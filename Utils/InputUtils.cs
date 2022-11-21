@@ -4,6 +4,9 @@ public static class InputUtils {
       
    public static bool GetBool(string text) {
       while(true) {
+         if(!text.EndsWith(": ")) {
+            text += ": ";
+         }
          var options = new List<string> { "Si", "No" };
          var option = GetOption(text, options, x => x);
          return option.Equals(options[0]);
@@ -20,6 +23,9 @@ public static class InputUtils {
    }
 
    public static T GetOption<T>(string text, Type ennm) {
+      if(!text.EndsWith(": ")) {
+         text += ": ";
+      }
       var options = (from object value in Enum.GetValues(ennm) select value.ToString()).ToList();
       var option = GetOption(text, options, x => x);
       return (T)Enum.Parse(ennm, option);
@@ -32,6 +38,9 @@ public static class InputUtils {
       
    public static T GetOption<T>(string text, List<T> elements, Func<T, string> display, bool returnOption = false, Func<T, bool> condition = null) {
       while(true) {
+         if(!text.EndsWith(": ")) {
+            text += ": ";
+         }
          Console.WriteLine();  
          if(text != null) {
             Console.WriteLine(text);
@@ -54,6 +63,9 @@ public static class InputUtils {
       
    public static string GetText(string text, Func<string, bool> condition = null) {
       while(true) {
+         if(!text.EndsWith(": ")) {
+            text += ": ";
+         }
          Console.Write(text);
          var result = Console.ReadLine();
          if(condition == null || condition(result)) return result;
@@ -63,6 +75,9 @@ public static class InputUtils {
 
    public static int GetNumber(string text, Func<int, bool> condition = null) {
       while(true) {
+         if(!text.EndsWith(": ")) {
+            text += ": ";
+         }
          Console.Write(text);
          if(int.TryParse(Console.ReadLine(), out var number) && (condition == null || condition(number))) return number;
          Console.WriteLine("Invalid input. Try again.");
@@ -71,6 +86,9 @@ public static class InputUtils {
 
    public static double GetDouble(string text, Func<double, bool> condition = null) {
       while(true) {
+         if(!text.EndsWith(": ")) {
+            text += ": ";
+         }
          Console.Write(text);
          if(double.TryParse(Console.ReadLine(), out var number) && (condition == null || condition(number))) return number;
          Console.WriteLine("Invalid input. Try again.");
@@ -79,6 +97,9 @@ public static class InputUtils {
 
    public static double? GetDoubleNullable(string text, Func<double, bool> condition = null) {
       while(true) {
+         if(!text.EndsWith(": ")) {
+            text += ": ";
+         }
          Console.Write(text);
          var readLine = Console.ReadLine();
          if(readLine == null || readLine.Trim() == "") return null;

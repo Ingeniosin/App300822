@@ -1,2 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using App300822.Algorithms;
+
+namespace App300822; 
+
+public class Program {
+    public static void Main(string[] args) {
+
+        AlgorithmManager.Execute(new List<Algorithm>{
+            new One(),
+            new Two()
+        });
+    }
+}
